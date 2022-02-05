@@ -49,4 +49,6 @@ public interface CountryRepository extends JpaRepository<Country, Integer> {
     nativeQuery = true)
     List<PopulationResult> populationParPaysSQL();
 
+    public Country findAllById(int country);
+
 }

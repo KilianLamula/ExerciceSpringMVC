@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<title>Affichage villes</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" type="text/css" href="/css/style.css" />
+</head>
+
+<body>
+    <h2>Affichage des villes</h2>
+    <table>
+        <caption>Liste des villes</caption>
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Population</th>
+                <th>Pays</th>
+            </tr>
+        </thead>
+        <tbody>
+	{{#cities}}
+            <tr>
+                <td>{{name}}</td>
+                <td>{{population}}</td>
+                <td>{{country.name}}</td>
+            </tr>
+        {{/cities}}
+    </table>
+
+    <h2>Ajouter une ville</h2>
+    <!--/* Au revient au contrôleur, avec la méthode POST */-->
+    <form method="post" action="save">
+	<div class="column">
+            <label for="country">Pays :</label>
+            <select id='country' name="country">
+            <option selected="true" disabled="disabled">Choisissez un pays</option>
+                {{#countries}}
+                    <option value="{{id}}">{{name}}</option>
+		{{/countries}}
+            </select>
+            <input type="submit">
+	</div>
+	<div class="column">
+            <label for="nom">Nom :</label>
+            <input type="text" name="name" 
+		{{#city.name}} value="{{city.name}}" {{/city.name}}
+		placeholder="Nom de la ville"/>				
+            <label for="population">Population :</label>
+            <input type="number" min="0" max="100" name="population"
+		{{#city.population}} value="{{city.population}}" {{/city.population}}
+		placeholder="Population de la ville"/>
+	</div>
+    </form>
+</body>
+
+</html>

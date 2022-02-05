@@ -14,7 +14,7 @@
     <artifactId>cours-spring-jpa</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <name>Exemple Spring-JPA</name>
+    <name>Exemple Spring-JPA 2</name>
     <description>Un projet Spring-JPA avec une seule entité</description>
 
     <properties>
