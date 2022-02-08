@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<title>Formulaire d'édition</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" type="text/css" href="/css/style.css" />
+</head>
+
+<body>
+    <h2>Ajouter une ville</h2>
+    <!--/* Au revient au contrôleur, avec la méthode POST */-->
+    <form method="post" action="save">
+	<div class="column">
+            <label for="country">Pays :</label>
+            <select id='country' name="country">
+            <option selected="true" disabled="disabled">Choisissez un pays</option>
+                {{#countries}}
+                    <option value="{{id}}">{{name}}</option>
+		{{/countries}}
+            </select>
+	</div>
+	<div class="column">
+            <label for="nom">Nom :</label>
+            <input type="text" name="name" 
+		{{#city.name}} value="{{city.name}}" {{/city.name}}
+		placeholder="Nom de la ville"/>				
+            <label for="population">Population :</label>
+            <input type="number" min="0" max="100" name="population"
+		{{#city.population}} value="{{city.population}}" {{/city.population}}
+		placeholder="Population de la ville"/>
+            <label for="id">Id :</label>
+		{{! On pourrait mettre un champ caché <input type="hidden>"}}
+		<input name="id" 
+			{{! Mustache n'aime pas les valeurs nulles ! }}
+			{{#city.id}} value="{{city.id}}" {{/city.id}} 
+			placeholder="Read-only, auto-généré"
+			disabled="disabled"
+		/>
+	</div>
+        <input type="submit">
+    </form>
+</body>
+
+</html>

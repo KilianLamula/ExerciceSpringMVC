@@ -16,6 +16,7 @@
                 <th>Nom</th>
                 <th>Population</th>
                 <th>Pays</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -24,34 +25,15 @@
                 <td>{{name}}</td>
                 <td>{{population}}</td>
                 <td>{{country.name}}</td>
+                <td>
+                    <a href='edit?id={{id}}'>Modifier</a> 
+                    <a href='delete?id={{id}}'>Supprimer</a>
+		</td>
             </tr>
         {{/cities}}
     </table>
-
-    <h2>Ajouter une ville</h2>
-    <!--/* Au revient au contrôleur, avec la méthode POST */-->
-    <form method="post" action="save">
-	<div class="column">
-            <label for="country">Pays :</label>
-            <select id='country' name="country">
-            <option selected="true" disabled="disabled">Choisissez un pays</option>
-                {{#countries}}
-                    <option value="{{id}}">{{name}}</option>
-		{{/countries}}
-            </select>
-            <input type="submit">
-	</div>
-	<div class="column">
-            <label for="nom">Nom :</label>
-            <input type="text" name="name" 
-		{{#city.name}} value="{{city.name}}" {{/city.name}}
-		placeholder="Nom de la ville"/>				
-            <label for="population">Population :</label>
-            <input type="number" min="0" max="100" name="population"
-		{{#city.population}} value="{{city.population}}" {{/city.population}}
-		placeholder="Population de la ville"/>
-	</div>
-    </form>
+    <h2>Ajouter une ville :</h2>
+    {{! On appelle l'URL 'add' du contôleur }}
+    <a href='add'>Ajouter une ville</a>
 </body>
-
 </html>

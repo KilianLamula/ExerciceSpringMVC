@@ -40,12 +40,35 @@ public class CityController {
         List<City> cities = daoCity.findAll();
         model.addAttribute("cities", cities);
 
-        List<Country> countries = daoCountry.findAll();
-        model.addAttribute("countries", countries);
-
         return DEFAULT_VIEW;
     }
-
+    
+    //Ajouter une ville
+    @GetMapping(path = "add")
+    public String montreLeFormulairePourAjout(@ModelAttribute("city") City city, Model model) {
+    List<Country> countries = daoCountry.findAll();
+    model.addAttribute("countries", countries);
+    return "formulaire";
+    }
+    
+    //Modifier une ville
+    @GetMapping(path = "edit")
+    public String montreLeFormulairePourEdition(@RequestParam("id") City city, Model model) {
+	model.addAttribute("city", city);
+        List<Country> countries = daoCountry.findAll();
+        model.addAttribute("countries", countries);
+	return "formulaire";
+    }
+    
+    //Supprimer une ville
+    @GetMapping(path = "delete")
+    public String supprimeUneVillePuisMontreLaListe(@RequestParam("id") City city) {
+        daoCity.delete(city);
+	return "redirect:show"; // on se redirige vers l'affichage de la liste
+    }
+    
+    
+    //On sauvegarde la ville (ajoute paramètre par paramètre)
     @PostMapping(path = "save")
     public String enregistreLaVillePuisMontreLaListe(@RequestParam String name, @RequestParam String population, @RequestParam int country) {
 
