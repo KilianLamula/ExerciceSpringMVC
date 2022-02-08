@@ -70,12 +70,8 @@ public class CityController {
     
     //On sauvegarde la ville (ajoute paramètre par paramètre)
     @PostMapping(path = "save")
-    public String enregistreLaVillePuisMontreLaListe(@RequestParam String name, @RequestParam String population, @RequestParam int country) {
+    public String enregistreLaVillePuisMontreLaListe(City city) {
 
-        Country pays = daoCountry.findAllById(country);
-
-        City city = new City(name, pays);
-        city.setPopulation(Integer.parseInt(population));
         daoCity.save(city);
 
         // On re-appelle le contrôleur avec la méthode GET
